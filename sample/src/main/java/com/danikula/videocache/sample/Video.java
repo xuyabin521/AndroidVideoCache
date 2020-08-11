@@ -14,7 +14,7 @@ public enum Video {
         this.url = url;
     }
 
-    private class Config {
+    private static class Config {
         private static final String ROOT = "https://raw.githubusercontent.com/danikula/AndroidVideoCache/master/files/";
     }
 }
