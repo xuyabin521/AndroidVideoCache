@@ -2,9 +2,10 @@ package com.danikula.videocache.sample;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.VideoView;
+
+import androidx.fragment.app.Fragment;
 
 import com.danikula.videocache.CacheListener;
 import com.danikula.videocache.HttpProxyCacheServer;
@@ -27,7 +28,7 @@ public class GalleryVideoFragment extends Fragment implements CacheListener {
     @InstanceState boolean playerStarted;
 
     @ViewById VideoView videoView;
-    @ViewById ProgressBar progressBar;
+    @ViewById SeekBar progressBar;
 
     private boolean visibleForUser;
 
@@ -91,7 +92,9 @@ public class GalleryVideoFragment extends Fragment implements CacheListener {
     public void onDestroy() {
         super.onDestroy();
 
-        videoView.stopPlayback();
+        if (videoView!=null) {
+            videoView.stopPlayback();
+        }
         App.getProxy(getActivity()).unregisterCacheListener(this);
     }
 

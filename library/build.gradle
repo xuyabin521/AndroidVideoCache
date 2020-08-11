@@ -9,15 +9,15 @@ buildscript {
 
 apply plugin: 'com.android.library'
 apply plugin: 'idea'
-apply plugin: 'bintray-release'
+//apply plugin: 'bintray-release'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 30
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 23
+        targetSdkVersion 30
         versionCode 22
         versionName '2.7.1'
     }
@@ -36,14 +36,14 @@ idea {
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-android:1.7.21'
+    implementation 'org.slf4j:slf4j-android:1.7.30'
 }
 
-publish {
-    userOrg = 'alexeydanilov'
-    groupId = 'com.danikula'
-    artifactId = 'videocache'
-    publishVersion = android.defaultConfig.versionName
-    description = 'Cache support for android VideoView'
-    website = 'https://github.com/danikula/AndroidVideoCache'
-}
+//publish {
+//    userOrg = 'alexeydanilov'
+//    groupId = 'com.danikula'
+//    artifactId = 'videocache'
+//    publishVersion = android.defaultConfig.versionName
+//    description = 'Cache support for android VideoView'
+//    website = 'https://github.com/danikula/AndroidVideoCache'
+//}
