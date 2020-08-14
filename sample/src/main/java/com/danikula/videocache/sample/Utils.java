@@ -34,12 +34,10 @@ public class Utils {
     }
 
     private static void delete(File file) throws IOException {
-        if (file.isFile() && file.exists()) {
-            deleteOrThrow(file);
-        } else {
+        if (!file.isFile() || !file.exists()) {
             cleanDirectory(file);
-            deleteOrThrow(file);
         }
+        deleteOrThrow(file);
     }
 
     private static void deleteOrThrow(File file) throws IOException {

@@ -1,5 +1,6 @@
 package com.danikula.videocache.sample;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import androidx.fragment.app.Fragment;
@@ -107,6 +108,7 @@ public class VideoFragment extends Fragment implements CacheListener {
         cacheStatusImageView.setImageResource(statusIconId);
     }
 
+    @SuppressLint("HandlerLeak")
     private final class VideoProgressUpdater extends Handler {
 
         public void start() {

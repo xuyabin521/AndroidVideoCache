@@ -13,17 +13,17 @@ public class SharedCacheActivity extends FragmentActivity {
         super.onCreate(state);
 
         if (state == null) {
-            addVideoFragment(Video.ORANGE_1, R.id.videoContainer0);
-            addVideoFragment(Video.ORANGE_1, R.id.videoContainer1);
-            addVideoFragment(Video.ORANGE_1, R.id.videoContainer2);
-            addVideoFragment(Video.ORANGE_1, R.id.videoContainer3);
+            addVideoFragment(R.id.videoContainer0);
+            addVideoFragment(R.id.videoContainer1);
+            addVideoFragment(R.id.videoContainer2);
+            addVideoFragment(R.id.videoContainer3);
         }
     }
 
-    private void addVideoFragment(Video video, int containerViewId) {
+    private void addVideoFragment(int containerViewId) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(containerViewId, VideoFragment.build(video.url))
+                .add(containerViewId, VideoFragment.build(Video.ORANGE_1.url))
                 .commit();
     }
 }

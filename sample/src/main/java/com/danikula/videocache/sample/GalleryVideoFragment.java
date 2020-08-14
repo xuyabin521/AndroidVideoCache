@@ -1,5 +1,6 @@
 package com.danikula.videocache.sample;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.SeekBar;
@@ -114,6 +115,7 @@ public class GalleryVideoFragment extends Fragment implements CacheListener {
         videoView.seekTo(videoPosition);
     }
 
+    @SuppressLint("HandlerLeak")
     private final class VideoProgressUpdater extends Handler {
 
         public void start() {

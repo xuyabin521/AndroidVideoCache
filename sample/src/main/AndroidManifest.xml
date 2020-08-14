@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
+<manifest xmlns:tools="http://schemas.android.com/tools"
     package="com.danikula.videocache.sample"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -12,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+        tools:targetApi="n">
         <activity
             android:name=".MenuActivity_"
             android:label="@string/app_name">
