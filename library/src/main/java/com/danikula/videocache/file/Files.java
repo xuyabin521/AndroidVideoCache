@@ -1,5 +1,7 @@
 package com.danikula.videocache.file;
 
+import android.os.Build;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,7 +90,11 @@ class Files {
         }
 
         private int compareLong(long first, long second) {
-            return (first < second) ? -1 : ((first == second) ? 0 : 1);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                return Long.compare(first, second);
+            }else {
+                return (first < second) ? -1 : ((first == second) ? 0 : 1);
+            }
         }
     }
 

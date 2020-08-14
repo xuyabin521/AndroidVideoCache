@@ -93,7 +93,7 @@ class Pinger {
         out.write(PING_RESPONSE.getBytes());
     }
 
-    private boolean pingServer() throws ProxyCacheException {
+    private boolean pingServer() {
         String pingUrl = getPingUrl();
         HttpUrlSource source = new HttpUrlSource(pingUrl);
         try {
@@ -119,7 +119,7 @@ class Pinger {
     private class PingCallable implements Callable<Boolean> {
 
         @Override
-        public Boolean call() throws Exception {
+        public Boolean call() {
             return pingServer();
         }
     }

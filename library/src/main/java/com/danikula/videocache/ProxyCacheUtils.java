@@ -13,7 +13,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 import static com.danikula.videocache.Preconditions.checkArgument;
 import static com.danikula.videocache.Preconditions.checkNotNull;
@@ -27,7 +26,6 @@ public class ProxyCacheUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger("ProxyCacheUtils");
     static final int DEFAULT_BUFFER_SIZE = 8 * 1024;
-    static final int MAX_ARRAY_PREVIEW = 16;
 
     static String getSupposablyMime(String url) {
         MimeTypeMap mimes = MimeTypeMap.getSingleton();
@@ -39,16 +37,6 @@ public class ProxyCacheUtils {
         checkNotNull(buffer, "Buffer must be not null!");
         checkArgument(offset >= 0, "Data offset must be positive!");
         checkArgument(length >= 0 && length <= buffer.length, "Length must be in range [0..buffer.length]");
-    }
-
-    static String preview(byte[] data, int length) {
-        int previewLength = Math.min(MAX_ARRAY_PREVIEW, Math.max(length, 0));
-        byte[] dataRange = Arrays.copyOfRange(data, 0, previewLength);
-        String preview = Arrays.toString(dataRange);
-        if (previewLength < length) {
-            preview = preview.substring(0, preview.length() - 1) + ", ...]";
-        }
-        return preview;
     }
 
     static String encode(String url) {

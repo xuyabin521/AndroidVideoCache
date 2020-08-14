@@ -125,22 +125,14 @@ public class HttpProxyCacheServer {
     public void registerCacheListener(CacheListener cacheListener, String url) {
         checkAllNotNull(cacheListener, url);
         synchronized (clientsLock) {
-            try {
-                getClients(url).registerCacheListener(cacheListener);
-            } catch (ProxyCacheException e) {
-                LOG.warn("Error registering cache listener", e);
-            }
+            getClients(url).registerCacheListener(cacheListener);
         }
     }
 
     public void unregisterCacheListener(CacheListener cacheListener, String url) {
         checkAllNotNull(cacheListener, url);
         synchronized (clientsLock) {
-            try {
-                getClients(url).unregisterCacheListener(cacheListener);
-            } catch (ProxyCacheException e) {
-                LOG.warn("Error registering cache listener", e);
-            }
+            getClients(url).unregisterCacheListener(cacheListener);
         }
     }
 
@@ -247,7 +239,7 @@ public class HttpProxyCacheServer {
         }
     }
 
-    private HttpProxyCacheServerClients getClients(String url) throws ProxyCacheException {
+    private HttpProxyCacheServerClients getClients(String url) {
         synchronized (clientsLock) {
             HttpProxyCacheServerClients clients = clientsMap.get(url);
             if (clients == null) {
