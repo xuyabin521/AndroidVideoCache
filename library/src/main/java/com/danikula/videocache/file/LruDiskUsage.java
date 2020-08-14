@@ -21,7 +21,7 @@ public abstract class LruDiskUsage implements DiskUsage {
     private final ExecutorService workerThread = Executors.newSingleThreadExecutor();
 
     @Override
-    public void touch(File file) throws IOException {
+    public void touch(File file) {
         workerThread.submit(new TouchCallable(file));
     }
 

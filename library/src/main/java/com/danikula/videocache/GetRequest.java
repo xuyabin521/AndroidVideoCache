@@ -47,7 +47,7 @@ class GetRequest {
         Matcher matcher = RANGE_HEADER_PATTERN.matcher(request);
         if (matcher.find()) {
             String rangeValue = matcher.group(1);
-            return Long.parseLong(rangeValue);
+            return Long.parseLong(rangeValue != null ? rangeValue : "0");
         }
         return -1;
     }

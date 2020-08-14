@@ -1,5 +1,6 @@
 package com.danikula.videocache;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Environment;
 
@@ -32,7 +33,7 @@ final class StorageUtils {
      * @return Cache {@link File directory}
      */
     public static File getIndividualCacheDirectory(Context context) {
-        File cacheDir = getCacheDirectory(context, true);
+        File cacheDir = getCacheDirectory(context);
         return new File(cacheDir, INDIVIDUAL_DIR_NAME);
     }
 
@@ -42,12 +43,11 @@ final class StorageUtils {
      * on device's file system depending incoming parameters.
      *
      * @param context        Application context
-     * @param preferExternal Whether prefer external location for cache
      * @return Cache {@link File directory}.<br />
      * <b>NOTE:</b> Can be null in some unpredictable cases (if SD card is unmounted and
      * {@link android.content.Context#getCacheDir() Context.getCacheDir()} returns null).
      */
-    private static File getCacheDirectory(Context context, boolean preferExternal) {
+    private static File getCacheDirectory(Context context) {
         File appCacheDir = null;
         String externalStorageState;
         try {
@@ -55,14 +55,14 @@ final class StorageUtils {
         } catch (NullPointerException e) { // (sh)it happens
             externalStorageState = "";
         }
-        if (preferExternal && MEDIA_MOUNTED.equals(externalStorageState)) {
+        if (MEDIA_MOUNTED.equals(externalStorageState)) {
             appCacheDir = getExternalCacheDir(context);
         }
         if (appCacheDir == null) {
             appCacheDir = context.getCacheDir();
         }
         if (appCacheDir == null) {
-            String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
+            @SuppressLint("SdCardPath") String cacheDirPath = "/data/data/" + context.getPackageName() + "/cache/";
             LOG.warn("Can't define system cache directory! '" + cacheDirPath + "%s' will be used.");
             appCacheDir = new File(cacheDirPath);
         }

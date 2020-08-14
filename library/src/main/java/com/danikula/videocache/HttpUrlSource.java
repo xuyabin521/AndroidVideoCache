@@ -86,7 +86,7 @@ public class HttpUrlSource implements Source {
         }
     }
 
-    private long readSourceAvailableBytes(HttpURLConnection connection, long offset, int responseCode) throws IOException {
+    private long readSourceAvailableBytes(HttpURLConnection connection, long offset, int responseCode) {
         long contentLength = getContentLength(connection);
         return responseCode == HTTP_OK ? contentLength
                 : responseCode == HTTP_PARTIAL ? contentLength + offset : sourceInfo.length;
@@ -98,7 +98,7 @@ public class HttpUrlSource implements Source {
     }
 
     @Override
-    public void close() throws ProxyCacheException {
+    public void close() {
         if (connection != null) {
             try {
                 connection.disconnect();

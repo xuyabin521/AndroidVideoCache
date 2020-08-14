@@ -11,7 +11,7 @@ import java.io.IOException;
 public class UnlimitedDiskUsage implements DiskUsage {
 
     @Override
-    public void touch(File file) throws IOException {
+    public void touch(File file) {
         // do nothing
     }
 }
